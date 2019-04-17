@@ -14,18 +14,22 @@ onehot_target = pd.get_dummies(dig.target)
 x_train, x_val, y_train, y_val = train_test_split(dig.data, onehot_target, test_size=0.1, random_state=10)
 
 '''*************************************************************************'''
+# activation function
 def RELU(s):
     return np.maximum(0,s)
-
+# derivative of the relu activation function
 def RELU_derv(z):
     return np.where(z <= 0, 0, 1)
 
+# sigmoid function
 def sigmoid(s):
     return 1/(1 + np.exp(-s))
 
+#derivative of the sigmoid function
 def sigmoid_derv(s):
     return s * (1 - s)
 
+# softmax fucntion, that make the sum of the all vector elements equal to 1
 def softmax(s):
     exps = np.exp(s)
     return exps/np.sum(exps, axis=1, keepdims=True)
@@ -35,6 +39,7 @@ def error(pred, real):
     res = pred - real
     return res/n_samples
 
+# loss function of the NN
 def cross_entropy(pred, real):
     n_samples = real.shape[0]
     logp = - np.log(pred[np.arange(n_samples), real.argmax(axis=1)])
