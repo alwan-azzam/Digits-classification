@@ -82,7 +82,7 @@ class MyNN:
         return self.a2.argmax()
 '''*************************************************************************'''
 '''*************************************************************************'''
-def Accuracy(data, label):
+def Accuracy(data, label, model):
     acc = 0
     for x,y in zip(data, label):
         s = model.predict(x)
@@ -106,6 +106,6 @@ for iter in range(epochs):
         model.feedforward(x_train_Norm[i : i+size_batch, : ])
         model.backprop(x_train_Norm[i : i+size_batch, : ], y_train[i : i+size_batch,:])
 		
-print("Test accuracy : ", Accuracy(x_val_Norm, np.array(y_val)))
+print("Test accuracy : ", Accuracy(x_val_Norm, np.array(y_val), model))
 
 
